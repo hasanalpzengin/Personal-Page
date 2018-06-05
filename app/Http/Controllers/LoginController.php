@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use DB;
+use App\LoginModel;
 
 class LoginController extends Controller
 {
@@ -13,9 +13,8 @@ class LoginController extends Controller
       if($user_id == -1){
         $username = $req->input('uname');
         $password = $req->input('pwd');
-        $checkLogin = DB::table('users')->where(['username'=>$username])->get();
-        if (count($checkLogin) > 0) {
-          $user = $checkLogin->first();
+        $user = LoginModel::getLogin($username, $password);
+        if (isset($user)) {
           if (Hash::check($password, $user->password)) {
             session(['id'=>$user->id]);
             $result['status']='success';
