@@ -24,8 +24,8 @@ class ContentModel extends Model
     return $posts;
   }
   protected static function getPost($id){
-    $post = DB::table(ContentModel::$POSTS_TABLE)->where(['id'=>$id])->get();
-    return $post;
+    $post['posts'] = DB::table(ContentModel::$POSTS_TABLE)->where(['id'=>$id])->get();
+    return $post['posts'];
   }
   protected static function getResume(){
     $resume = DB::table(ContentModel::$RESUME_TABLE)->get()->first();

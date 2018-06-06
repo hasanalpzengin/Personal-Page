@@ -17,20 +17,25 @@ class LoginController extends Controller
         if (isset($user)) {
           if (Hash::check($password, $user->password)) {
             session(['id'=>$user->id]);
-            $result['status']='success';
+            $status='success';
+            $message='Log-in Success';
           }else{
-            $result['status']='error';
-            $result['message']='Wrong Password';
+            $status='error';
+            $message='Wrong Password';
           }
         }else{
-          $result['status']='error';
-          $result['message']='Wrong Username';
+          $status='error';
+          $message='Wrong Username';
         }
       }else{
-        $result['status']='error';
-        $result['message']='Exist Session Data. Logout first to log-in';
+        $status='error';
+        $message='Exist Session Data. Logout first to log-in';
       }
-      sleep(1);
-      return redirect('/home')->->with($result);
+      return redirect()->action('PageController@posts', ['status'=>$status, 'message'=>$message]);
+    }
+
+    public function logout(Request $req){
+      $req->session()->forget('id');
+      return redirect('home');
     }
 }

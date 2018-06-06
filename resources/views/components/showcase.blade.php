@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row my-2">
   <div class="carousel slide text-center mx-auto" id="myCarousel" data-ride="carousel">
 
     <ul class="carousel-indicators">
