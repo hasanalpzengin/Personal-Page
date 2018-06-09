@@ -10,17 +10,16 @@
     <title>Hasan Alp Zengin</title>
   </head>
   <body>
-    @include('components.profile')
-    @include('components.sidebar')
+    @include('admin.components.profile')
     <div class="container-fluid">
       <row class="row md-5">
         @include('components.banner')
       </row>
-      @if(Request::is('home'))
-        @include('components.showcase')
-      @endif
       <row class="row fill">
+        @include('admin.components.sidebar')
+        <div class="col-12 col-md-10">
         @yield('content')
+        </div>
       </row>
     </div>
 

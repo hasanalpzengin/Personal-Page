@@ -28,4 +28,6 @@ Route::get('projects', 'PageController@projects');
 Route::post('login', 'LoginController@doLogin');
 Route::get('logout', 'LoginController@logout');
 //admin
-Route::get('control-panel', 'AdminController@index');
+Route::get('control-panel', 'AdminController@home');
+Route::get('control-panel/posts', 'AdminController@posts_control');
+Route::get('control-panel/users', 'AdminController@users_control');
