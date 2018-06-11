@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <!-- COMMENT SECTION -->
-    @if(count($content['list'])>0)
+    @if(isset($content['list']) and count($content['list'])>0)
     <table class="table table-stripe">
       <thead class="thead-dark">
         <tr>
@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        @include('admin.components.post')
+        @include('admin.post.components.post')
       </tbody>
     </table>
     @else

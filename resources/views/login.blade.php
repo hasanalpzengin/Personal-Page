@@ -14,7 +14,7 @@
     <div class="row form-group">
       <button type="submit" class="btn btn-primary w-100">Login</button>
     </div>
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    @csrf
   </form>
 </div>
 @endsection

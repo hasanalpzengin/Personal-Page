@@ -28,14 +28,6 @@ class AdminModel extends Model
     $users = DB::table(AdminModel::$USERS_TABLE)->where(['id'=>$id])->get();
     return $users;
   }
-  protected static function getPosts(){
-    $posts = DB::table(AdminModel::$POSTS_TABLE)->get();
-    return $posts;
-  }
-  protected static function getPost($id){
-    $post['posts'] = DB::table(AdminModel::$POSTS_TABLE)->where(['id'=>$id])->get();
-    return $post['posts'];
-  }
   protected static function getResume(){
     $resume = DB::table(ContentModel::$RESUME_TABLE)->get()->first();
     return $resume;

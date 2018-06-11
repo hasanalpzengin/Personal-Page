@@ -20,10 +20,10 @@
   height: auto;
   z-index: 200;
   transition: 0.4s;
-  display: block;
+  display: none;
 }
 #profile.active{
-  right: 20px;
+  right: 0px;
 }
 #profile-btn{
   position: absolute;
@@ -42,7 +42,7 @@
   width: 50px;
   padding-top: 5px;
   height: 50px;
-  right: 220px;
+  right: 200px;
   border-radius: 0px;
 }
 

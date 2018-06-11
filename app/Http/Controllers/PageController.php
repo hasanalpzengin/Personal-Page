@@ -13,7 +13,7 @@ class PageController extends Controller
     return view('projects', compact('content'));
   }
   public function posts(Request $request){
-    $content['posts'] = ContentModel::getPosts();
+    $content['list'] = ContentModel::getPosts();
     if ($request->all()!==null) {
       $content['result']['status']=$request->input('status');
       $content['result']['message']=$request->input('message');

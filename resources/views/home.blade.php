@@ -12,7 +12,7 @@
   <!-- COMMENT DIVISION -->
   <ul class="wrapper list-unstyled mt-2">
     <!-- COMMENT SECTION -->
-    @if(count($content['posts'])>0)
+    @if(isset($content['list']) and count($content['list'])>0)
       @include('components.post')
     @else
       @include('components.empty')

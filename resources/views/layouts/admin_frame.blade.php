@@ -18,6 +18,13 @@
       <row class="row fill">
         @include('admin.components.sidebar')
         <div class="col-12 col-md-10">
+        @if(isset($content['status']))
+          @if($content['status']=='success')
+            <div class="alert alert-success">{{ $content['message'] }}</div>
+          @else
+            <div class="alert alert-danger">{{ $content['message'] }}</div>
+          @endif
+        @endif
         @yield('content')
         </div>
       </row>
