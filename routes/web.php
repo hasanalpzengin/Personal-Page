@@ -28,9 +28,8 @@ Route::get('projects', 'PageController@projects');
 Route::post('login', 'LoginController@doLogin');
 Route::get('logout', 'LoginController@logout');
 Route::get('control-panel/logout', 'LoginController@logout');
-//admin
+/** Admin Routes **/
 Route::redirect('control-panel', '/control-panel/posts');
-Route::get('control-panel/users', 'AdminController@users_control');
 //post
 Route::get('control-panel/posts', 'PostController@control');
 Route::get('control-panel/posts/add', 'PostController@add_view');
@@ -45,3 +44,14 @@ Route::post('control-panel/users/add', 'UserController@add');
 Route::get('control-panel/users/delete/{id}', 'UserController@delete');
 Route::get('control-panel/users/edit/{id}', 'UserController@edit_view');
 Route::post('control-panel/users/edit/{id}', 'UserController@edit');
+//project
+Route::get('control-panel/projects', 'ProjectController@control');
+Route::get('control-panel/projects/add', 'ProjectController@add_view');
+Route::post('control-panel/projects/add', 'ProjectController@add');
+Route::get('control-panel/projects/delete/{id}', 'ProjectController@delete');
+Route::get('control-panel/projects/edit/{id}', 'ProjectController@edit_view');
+Route::post('control-panel/projects/edit/{id}', 'ProjectController@edit');
+//resume
+Route::get('control-panel/resume', 'ResumeController@control');
+Route::get('control-panel/resume/add', 'ResumeController@add_view');
+Route::post('control-panel/resume/add', 'ResumeController@add');
