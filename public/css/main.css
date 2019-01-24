@@ -1,0 +1,41 @@
+.rand-text{
+    position: absolute;
+    display: block;
+    opacity: 0.5;
+    z-index: -1;
+    top: 400px;
+    right: 300px;
+    transform: rotate(45deg);
+}
+
+#admin-toolbar{
+    cursor: pointer;
+}
+
+.admin-panel{
+    width: 250px;
+    position: absolute;
+    top: 150px;
+    right: 50px;
+    display: block;
+}
+
+#admin-menu{
+    position: absolute;
+    right: 0px;
+    top: 80px;
+    z-index: 100;
+    display: none;
+}
+
+.profile{
+    cursor: pointer;
+}
+
+.list-group-item a{
+ color: #593196 !important
+}
+
+.list-group-item{
+    color: #593196 !important
+}

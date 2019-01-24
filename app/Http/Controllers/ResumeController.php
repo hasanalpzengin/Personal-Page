@@ -3,52 +3,47 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\ResumeModel;
-use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Redirect;
+use File;
+use App\Log;
 
 class ResumeController extends Controller
 {
-  protected function add(Request $request){
-    if ($request->input('status')!==null) {
-      $content['status']=$request->input('status');
-      $content['message']=$request->input('message');
+    public function show(){
+        return view('pages.cv');
     }
-    if ($request->session()->get('id')!==null) {
-      $file = $request->file('resume');
-      $filename = $file->getClientOriginalName();
-      $file->move('storage', $filename);
-      ResumeModel::deleteResume();
-      $content = ResumeModel::addResume($filename);
-    }else{
-      $content['status']="error";
-      $content['message']="Access Denied";
+
+    public function upload(Request $request){
+        if($request->session()->get('id')){
+            if($request->session()->get('permission')>5){
+                if($request->file('resume')){
+                    //move image
+                    File::delete(base_path().'/public/documents/cv.pdf');
+                    $request->file('resume')->move(base_path().'/public/documents',"cv.pdf");
+                    //create log
+                    $log = new Log;
+                    $log->uid = $request->session()->get('id');
+                    $log->log = "Uploaded New Resume";
+                    $log->save();
+                    return Redirect::back();
+                }
+            }else{
+                return view('pages.error', ['error'=>"Not enough permission to upload new cv"]);
+            }
+        }else{
+            return view('pages.error', ['error'=>"You have to be logged in to upload new cv"]);
+        }
     }
-    return view('admin/resume/add', compact('content'));
-  }
-  protected function control(Request $request){
-    if ($request->status!==null) {
-      $content['status']=$request->status;
-      $content['message']=$request->message;
+
+    public function showUpload(Request $request){
+        if($request->session()->get('id')){
+            if($request->session()->get('permission')>5){
+                return view('pages.uploadResume');
+            }else{
+                return view('pages.error', ['error'=>"Not enough permission to upload new cv"]);
+            }
+        }else{
+            return view('pages.error', ['error'=>"You have to be logged in to upload new cv"]);
+        }
     }
-    if ($request->session()->get('id')!==null) {
-      $result = ResumeModel::getResume();
-      if (isset($result['status'])) {
-        $content['status'] = $result['status'];
-        $content['message'] = $result['message'];
-      }
-      $content[0] = $result[0];
-    }else{
-      $content['status']="error";
-      $content['message']="Access Denied";
-    }
-    return view('admin/resume/main', compact('content'));
-  }
-  protected function add_view(Request $request){
-    if ($request->input('status')!==null) {
-      $content['status']=$request->input('status');
-      $content['message']=$request->input('message');
-    }
-    return view('admin/resume/add', compact('content'));
-  }
 }
